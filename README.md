@@ -43,7 +43,7 @@ reclameaqui-bot/
 ### **3.2. Executar o Script**
 Para rodar manualmente:
 ```bash
-python reclameaqui.py
+python src/reclameaqui.py
 ```
 
 ## **4. Criando um Executável com PyInstaller**
@@ -62,9 +62,12 @@ Criamos um `Dockerfile` para rodar a aplicação em qualquer ambiente:
 FROM python:3.12-slim
 RUN apt-get update && apt-get install -y chromium chromium-driver
 WORKDIR /app
-COPY . /app
+COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-CMD ["python", "reclameaqui.py"]
+COPY ./src ./src
+COPY .env .env
+CMD ["python", "src/reclameaqui.py"]
+
 ```
 
 ### **5.2. Construir e Rodar o Container**
