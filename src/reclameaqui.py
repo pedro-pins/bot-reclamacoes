@@ -15,7 +15,7 @@ load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-URL_RECLAMEAQUI = "https://www.reclameaqui.com.br/empresa/sea-telecom_178654/"
+URL_RECLAMEAQUI = "https://www.reclameaqui.com.br/empresa/exemplo/" # adicione a empresa que deseja verificar. 
 
 def configurar_driver():
     options = Options()
