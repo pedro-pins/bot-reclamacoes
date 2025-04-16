@@ -1,0 +1,30 @@
+# Ambientes virtuais
+venv/
+.env
+
+# Cache e arquivos temporários do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de build
+build/
+dist/
+*.spec
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+
+# Arquivos de log temporários
+*.log
+
+# Docker
+*.pid
+*.sock
+
+# Outros arquivos ocultos de sistema
+.DS_Store
+Thumbs.db
