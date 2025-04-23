@@ -120,6 +120,27 @@ Para verificar os logs:
 sudo journalctl -u reclameaqui -f
 ```
 
-## **7. Conclusão**
-Agora a  aplicação está pronta para monitorar reclamações no Reclame Aqui e enviá-las para o Telegram automaticamente! 🚀
+
+
+## **7.Exemplo de Resultado**
+
+```
+Total de reclamações encontradas: 3
+
+1. Cobrança indevida de serviço cancelado
+https://www.reclameaqui.com.br/claro/cobranca-indesejada...
+
+2. Atendimento ineficiente
+https://www.reclameaqui.com.br/claro/atendimento-pessimo...
+```
+
+---
+
+## **Conclusão**
+
+O bot já está funcional e pronto para monitorar empresas no Reclame Aqui. Agora é possível:
+
+- Automatizar verificações
+- Acompanhar novas queixas rapidamente
+- Receber notificações de forma transparente via Telegram
 
