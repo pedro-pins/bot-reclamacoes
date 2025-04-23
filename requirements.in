@@ -1,0 +1,7 @@
+requirements.in
+
+selenium
+webdriver-manager
+beautifulsoup4
+requests
+python-dotenv

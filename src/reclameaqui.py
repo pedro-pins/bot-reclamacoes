@@ -1,21 +1,25 @@
 import os
-import requests
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-from dotenv import load_dotenv
+import requests # type: ignore
+from bs4 import BeautifulSoup # type: ignore
+from selenium import webdriver # type: ignore
+from selenium.webdriver.chrome.options import Options # type: ignore
+from selenium.webdriver.chrome.service import Service # type: ignore
+from selenium.webdriver.common.by import By # type: ignore
+from selenium.webdriver.support.ui import WebDriverWait # type: ignore
+from selenium.webdriver.support import expected_conditions as EC # type: ignore
+from webdriver_manager.chrome import ChromeDriverManager # type: ignore
+from dotenv import load_dotenv # type: ignore
 
 # Carrega variáveis do arquivo .env
 load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-URL_RECLAMEAQUI = "https://www.reclameaqui.com.br/empresa/exemplo/" # adicione a empresa que deseja verificar. 
+URL_RECLAMEAQUI = os.getenv ("URL_RECLAMEAQUI") # adicione a empresa que deseja verificar. 
+
+if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID or not URL_RECLAMEAQUI:
+    raise ValueError("As variáveis de ambiente TELEGRAM_TOKEN, TELEGRAM_CHAT_ID e URL_RECLAMEAQUI devem ser definidas.")
+
 
 def configurar_driver():
     options = Options()

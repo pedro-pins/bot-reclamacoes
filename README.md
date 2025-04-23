@@ -13,6 +13,16 @@ Para instalar as dependências:
 pip install selenium webdriver-manager beautifulsoup4 requests
 ```
 
+## **1.1 Ambiente virtual**
+
+Crie e ative o ambiente virtual:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ## **2. Configuração do Bot no Telegram**
 1. No Telegram, inicie uma conversa com **@BotFather**.
 2. Envie o comando `/newbot` e siga as instruções para criar um bot.
