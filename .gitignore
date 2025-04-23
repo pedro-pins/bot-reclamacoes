@@ -1,5 +1,5 @@
 # Ambientes virtuais
-venv/
+.venv/
 .env
 
 # Cache e arquivos temporários do Python
