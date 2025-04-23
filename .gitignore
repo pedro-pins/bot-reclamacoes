@@ -28,3 +28,4 @@ dist/
 # Outros arquivos ocultos de sistema
 .DS_Store
 Thumbs.db
+.venv/
