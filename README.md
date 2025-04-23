@@ -1,128 +1,80 @@
 # Reclame Aqui Bot - Monitoramento de Reclamações
 
-Este projeto utiliza **Selenium** e **BeautifulSoup** para monitorar reclamações no site **Reclame Aqui** e envia notificações automáticas via **Telegram**.
+Este projeto é um bot desenvolvido em Python que realiza o monitoramento automático de reclamações no site [Reclame Aqui](https://www.reclameaqui.com.br), focando em empresas específicas, e envia as informações via Telegram.
 
-## **1. Requisitos**
-Antes de iniciar, certifique-se de ter instalado:
+---
+
+## Funcionalidades
+
+- Captura os títulos das últimas reclamações públicas.
+- Envia notificações para o Telegram com links diretos.
+- Utiliza scraping com Selenium + BeautifulSoup para maior confiabilidade.
+- Pode ser configurado facilmente via `.env`.
+
+---
+
+## Tecnologias Utilizadas
+
 - **Python 3.12+**
-- **Google Chrome e ChromeDriver**
-- **Bibliotecas Python:** `selenium`, `webdriver-manager`, `beautifulsoup4`, `requests`
+- **Selenium** (automação de navegador)
+- **BeautifulSoup4** (parser HTML)
+- **Requests** (requisições para API Telegram)
+- **python-dotenv** (carregamento de variáveis de ambiente)
+- **webdriver-manager** (instalação automática do driver)
 
-Para instalar as dependências:
+---
+
+## Instalação
+
+1. Clone o repositório:
+
 ```bash
-pip install selenium webdriver-manager beautifulsoup4 requests
+git clone https://github.com/pedro-pins/bot-reclamacoes.git
+cd bot-reclamacoes
 ```
 
-## **1.1 Ambiente virtual**
-
-Crie e ative o ambiente virtual:
+2. Crie e ative um ambiente virtual:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
+
+3. Instale as dependências:
+
+```bash
 pip install -r requirements.txt
 ```
 
-## **2. Configuração do Bot no Telegram**
-1. No Telegram, inicie uma conversa com **@BotFather**.
-2. Envie o comando `/newbot` e siga as instruções para criar um bot.
-3. Copie o **Token** fornecido pelo BotFather.
-4. Inicie uma conversa com o bot e envie `/start`.
-5. Para obter o **CHAT_ID**, acesse no navegador:
-   ```
-   https://api.telegram.org/bot<TOKEN>/getUpdates
-   ```
-   Substitua `<TOKEN>` pelo seu token e copie o valor de `chat.id`.
+---
 
-## **3. Desenvolvimento da Aplicação**
-Criamos um script Python que:
-1. Usa o **Selenium** para acessar o site do Reclame Aqui.
-2. Role a página para garantir que todas as reclamações sejam carregadas.
-3. Captura os títulos das reclamações e formata uma mensagem.
-4. Envia a mensagem ao Telegram.
+## Configuração
 
-### **3.1. Estrutura do Projeto**
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+
 ```
-reclameaqui-bot/
-│── reclameaqui.py  # Script principal
-│── requirements.txt # Dependências do projeto
-│── Dockerfile      # Configuração para Docker
-│── README.md       # Documentação
+TELEGRAM_TOKEN=seu_token_do_bot
+TELEGRAM_CHAT_ID=seu_chat_id
+URL_RECLAMEAQUI=https://www.reclameaqui.com.br/empresa/claro/
 ```
 
-### **3.2. Executar o Script**
-Para rodar manualmente:
+Você pode usar o arquivo `.env.example` como base.
+
+---
+
+## Execução
+
+Execute o bot com:
+
 ```bash
 python src/reclameaqui.py
 ```
 
-## **4. Criando um Executável com PyInstaller**
-Se quiser rodar como um executável:
-```bash
-pip install pyinstaller
-pyinstaller --onefile --name reclameaqui_bot reclameaqui.py
-```
-O executável será gerado na pasta `dist/`.
+O bot acessará a página da empresa, extrairá as reclamações mais recentes e enviará as informações formatadas para o Telegram.
 
-## **5. Rodando com Docker**
-Criamos um `Dockerfile` para rodar a aplicação em qualquer ambiente:
+---
 
-### **5.1. Criar o Arquivo `Dockerfile`**
-```dockerfile
-FROM python:3.12-slim
-RUN apt-get update && apt-get install -y chromium chromium-driver
-WORKDIR /app
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-COPY ./src ./src
-COPY .env .env
-CMD ["python", "src/reclameaqui.py"]
-
-```
-
-### **5.2. Construir e Rodar o Container**
-```bash
-docker build -t reclameaqui-bot .
-docker run --rm reclameaqui-bot
-```
-
-## **6. Automatizando com Systemd (Linux)**
-Se quiser rodar automaticamente no Linux:
-
-### **6.1. Criar o Arquivo de Serviço**
-```bash
-sudo nano /etc/systemd/system/reclameaqui.service
-```
-Adicione:
-```ini
-[Unit]
-Description=Reclame Aqui Bot
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/python3 /home/user/bot-teste/reclameaqui.py
-WorkingDirectory=/home/user/bot-teste
-Restart=always
-User=user
-
-[Install]
-WantedBy=multi-user.target
-```
-
-### **6.2. Ativar e Iniciar o Serviço**
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable reclameaqui
-sudo systemctl start reclameaqui
-```
-Para verificar os logs:
-```bash
-sudo journalctl -u reclameaqui -f
-```
-
-
-
-## **7.Exemplo de Resultado**
+## Exemplo de Saída
 
 ```
 Total de reclamações encontradas: 3
@@ -136,11 +88,33 @@ https://www.reclameaqui.com.br/claro/atendimento-pessimo...
 
 ---
 
-## **Conclusão**
+## Estrutura do Projeto
 
-O bot já está funcional e pronto para monitorar empresas no Reclame Aqui. Agora é possível:
+```
+bot-reclamacoes/
+├── src/
+│   └── reclameaqui.py
+├── .env.example
+├── requirements.txt
+├── README.md
+```
 
-- Automatizar verificações
-- Acompanhar novas queixas rapidamente
-- Receber notificações de forma transparente via Telegram
+---
 
+## Conclusão
+
+- Implementar cache ou log para evitar mensagens duplicadas.
+- Adicionar agendamento com cron ou schedule.
+- Armazenar histórico das reclamações em arquivo ou banco de dados.
+- Criar testes automatizados.
+- Publicar via Docker com container leve.
+
+---
+
+## Licença
+
+Projeto distribuído sob a licença MIT.
+
+---
+
+Para sugestões ou dúvidas, sinta-se à vontade para abrir uma Issue.
