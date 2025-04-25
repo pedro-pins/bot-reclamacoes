@@ -113,8 +113,11 @@ bot-reclamacoes/
 
 ## Licença
 
-Projeto distribuído sob a licença MIT.
+Para sugestões ou dúvidas, sinta-se à vontade para abrir uma Issue.
 
 ---
 
-Para sugestões ou dúvidas, sinta-se à vontade para abrir uma Issue.
+## Contato
+
+Pedro Pins: [Linkedin](https://www.linkedin.com/in/pedro-pins-0a859b193/)
+
